@@ -42,7 +42,9 @@ EXAMPLES OF THE KEY HUBOT FUNCTIONS
 //   });
 // };
 
-const pep = ["https://media.giphy.com/media/l3fQgjVoyZ1I4EyOs/giphy.gif"];
+//PepTalkBot:
+
+const pep = ["https://i.imgur.com/Dem7FgOs.png"];
 
 module.exports = function(robot) {
   robot.hear(/sad panda/i, function(msg) {
@@ -55,6 +57,16 @@ module.exports = function(robot) {
     return res.send("You're more than good. You're great.");
   });
   robot.respond(/More/, function(res){
-    return res.send(pep);
+    return res.send(pep + "\nHow are you feeling now? You can say, 'I feel happier' or 'I feel ___.' Go ahead and tell me how you're doing!");
+
   });
-}
+  robot.respond(/I feel (.*)/i, function(msg) {
+    var feeling;
+    feeling = msg.match[1];
+    if (feeling == "happier") {
+      return msg.send("Awesome! My work here is done.");
+    } else {
+      return msg.reply("Well, don't get too attached to that feeling. All things are temporal.");
+    }
+  })
+  };
